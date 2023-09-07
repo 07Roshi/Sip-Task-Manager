@@ -1,10 +1,7 @@
 const Customer = require("../models/Customer");
 const mongoose = require("mongoose");
 
-/**
- * GET /
- * Homepage
- */
+
 exports.homepage = async (req, res) => {
 
     const messages = await req.consumeFlash('info');
@@ -35,25 +32,7 @@ exports.homepage = async (req, res) => {
       console.log(error);
     }
 }
-// exports.homepage = async (req, res) => {
-//     const messages = await req.consumeFlash('info');
-//     const locals = {
-//       title: 'NodeJs',
-//       description: 'Free NodeJs User Management System'
-//     }
 
-//     try {
-//       const customers = await Customer.find({}).limit(22);
-//       res.render('index', { locals, messages, customers } );
-//     } catch (error) {
-//       console.log(error);
-//     }
-// }
-
-/**
- * GET /
- * About
- */
 exports.about = async (req, res) => {
     const locals = {
       title: 'About',
@@ -67,15 +46,6 @@ exports.about = async (req, res) => {
     }
 }
 
-
-
-
-
-
-/**
- * GET /
- * New Customer Form
- */
 exports.addCustomer = async (req, res) => {
   const locals = {
     title: "Add New Customer - NodeJs",
@@ -85,10 +55,6 @@ exports.addCustomer = async (req, res) => {
   res.render("customer/add", locals);
 };
 
-/**
- * POST /
- * Create New Customer
- */
 exports.postCustomer = async (req, res) => {
   console.log(req.body);
 
@@ -111,10 +77,6 @@ exports.postCustomer = async (req, res) => {
 };
 
 
-/**
- * GET /
- * Customer Data 
-*/
 exports.view = async (req, res) => {
 
   try {
@@ -137,11 +99,6 @@ exports.view = async (req, res) => {
 }
 
 
-
-/**
- * GET /
- * Edit Customer Data 
-*/
 exports.edit = async (req, res) => {
 
   try {
@@ -164,12 +121,6 @@ exports.edit = async (req, res) => {
 }
 
 
-
-
-/**
- * GET /
- * Update Customer Data 
-*/
 exports.editPost = async (req, res) => {
   try {
     await Customer.findByIdAndUpdate(req.params.id,{
@@ -188,11 +139,6 @@ exports.editPost = async (req, res) => {
   }
 }
 
-
-/**
- * Delete /
- * Delete Customer Data 
-*/
 exports.deleteCustomer = async (req, res) => {
   try {
     await Customer.deleteOne({ _id: req.params.id });
@@ -202,11 +148,6 @@ exports.deleteCustomer = async (req, res) => {
   }
 }
 
-
-/**
- * Get /
- * Search Customer Data 
-*/
 exports.searchCustomers = async (req, res) => {
 
   const locals = {
